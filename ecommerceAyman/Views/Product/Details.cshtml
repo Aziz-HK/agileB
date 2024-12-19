@@ -1,0 +1,17 @@
+﻿@model ecommerceAyman.Models.Product
+
+<div class="container">
+    <div class="card shadow">
+        <img class="card-img-top" src="@Model.ImageUrl" alt="@Model.Name" style="height: 400px; object-fit: cover;">
+        <div class="card-body">
+            <h2 class="card-title text-danger">@Model.Name</h2>
+            <p class="card-text">@Model.Description</p>
+            <p class="card-text text-muted">Ajouté le : @Model.DateAdded.ToShortDateString()</p>
+            @if (Model.Price > 0)
+            {
+                <p class="card-text text-success">Prix: $@Model.Price</p>
+            }
+            <a href="@Url.Action("Index", "Product")" class="btn btn-secondary">Retour à la liste</a>
+        </div>
+    </div>
+</div>

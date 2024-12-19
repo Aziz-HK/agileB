@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ecommerceAyman.Models.Product>
+
+<h2>Publications Tunivision</h2>
+
+@if (ViewBag.UserName != null)
+{
+    <p class="text-danger">Bonjour, @ViewBag.UserName !</p>
+}
+else
+{
+    <p class="text-muted">Bienvenue, Visiteur inconnu</p>
+}
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-6">
+            <div class="card mb-4 shadow-sm">
+                <!-- Event Image -->
+                <img class="card-img-top" src="@product.ImageUrl" alt="@product.Name" style="height: 300px; object-fit: cover;">
+
+                <div class="card-body">
+                    <!-- Event Title -->
+                    <h4 class="card-title text-danger">@product.Name</h4>
+                    <!-- Event Description -->
+                    <p class="card-text">@product.Description</p>
+                    <!-- Event Date -->
+                    <p class="card-text text-muted">Ajouté le : @product.DateAdded.ToShortDateString()</p>
+                    <!-- Event Price (if needed, e.g., for ticketed events) -->
+                    @if (product.Price > 0)
+                    {
+                        <p class="card-text text-success">Prix: $@product.Price</p>
+                    }
+                    <!-- Voir l'Événement Button -->
+                    <div class="d-grid">
+                        <a href="@Url.Action("Details", "Product", new { id = product.ProductID })" class="btn btn-danger">
+                            Voir l'Événement
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    }
+</div>
